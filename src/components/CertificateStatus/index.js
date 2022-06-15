@@ -64,7 +64,7 @@ export const CertificateStatus = ({certificateData, goBack}) => {
     setTimeout(()=>{
         try {
             axios
-              .post("/divoc/api/v1/events/", {"date":new Date().toISOString(), "type":"verify"})
+              .post("https://verify.cowin.gov.in/divoc/api/v1/events/", {"date":new Date().toISOString(), "type":"verify"})
               .catch((e) => {
                 console.log(e);
             });
@@ -147,7 +147,7 @@ export const CertificateStatus = ({certificateData, goBack}) => {
 
     async function checkIfRevokedCertificate(data) {
         return axios
-            .post("/cert/api/certificate/revoked", data)
+            .post("https://verify.cowin.gov.in/cert/api/certificate/revoked", data)
             .then((res) => {
                 dispatch(addEventAction({type: EVENT_TYPES.REVOKED_CERTIFICATE, extra: certificateData}));
                 return res
